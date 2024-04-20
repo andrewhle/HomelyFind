@@ -1,5 +1,5 @@
 
 
-## HomelyFind
+# HomelyFind
 
-# Real Estate Listing Platform
+## Real Estate Listing Platform
