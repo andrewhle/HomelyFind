@@ -1,29 +1,177 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import styled from "@emotion/styled";
+
+const Nav = styled.nav`
+  background-color: white;
+  border-color: #e5e7eb;
+`;
+
+const NavContainer = styled.div`
+  max-width: 1280px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+`;
+
+const NavLink = styled.a`
+  display: flex;
+  align-items: center;
+  space-x: 0.75rem;
+  text-decoration: none;
+`;
+
+const NavLogo = styled.span`
+  font-size: 2rem;
+  font-weight: 600;
+  white-space: nowrap;
+`;
+
+const NavButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.875rem;
+  color: #6b7280;
+  background-color: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #f3f4f6;
+  }
+  &:focus {
+    outline: none;
+    ring: 2px;
+    ring-color: #e5e7eb;
+  }
+`;
+
+const NavMenu = styled.div`
+  display: none;
+  width: 100%;
+  @media (min-width: 768px) {
+    display: block;
+    width: auto;
+  }
+`;
+
+const NavList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background-color: #f9fafb;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: 0;
+    margin-top: 0;
+    border: none;
+    background-color: white;
+  }
+`;
+
+const NavItem = styled.li`
+  margin-bottom: 0.5rem;
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    margin-right: 2rem;
+  }
+`;
+
+const NavLinkItem = styled.a`
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: #1f2937;
+  text-decoration: none;
+  border-radius: 0.375rem;
+  &:hover {
+    background-color: #f3f4f6;
+  }
+  &.active {
+    color: #1d4ed8;
+    background-color: #3b82f6;
+  }
+`;
+
+const DropdownButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  color: #1f2937;
+  background-color: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #f3f4f6;
+  }
+  @media (min-width: 768px) {
+    width: auto;
+    padding: 0;
+  }
+`;
+
+const DropdownMenu = styled.div`
+  position: absolute;
+  z-index: 10;
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  font-weight: 400;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 11rem;
+  margin-top: 0.5rem;
+`;
+
+const DropdownList = styled.ul`
+  padding: 0.5rem 0;
+  color: #374151;
+`;
+
+const DropdownItem = styled.a`
+  display: block;
+  padding: 0.5rem 1rem;
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    background-color: #f3f4f6;
+  }
+`;
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav class="bg-white border-gray-200">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
-        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+    <Nav>
+      <NavContainer>
+        <NavLink href="#">
           <Image src="/logo.png" width={80} height={80} alt="HomelyFind logo" />
-          <span class="self-center text-2xl font-semibold whitespace-nowra">
-            HomelyFind
-          </span>
-        </a>
-        <button
-          data-collapse-toggle="navbar-dropdown"
-          type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          <NavLogo>HomelyFind</NavLogo>
+        </NavLink>
+        <NavButton
+          onClick={() => setIsOpen(!isOpen)}
           aria-controls="navbar-dropdown"
-          aria-expanded="false"
+          aria-expanded={isOpen}
         >
-          <span class="sr-only">Open main menu</span>
+          <span className="sr-only">Open main menu</span>
           <svg
-            class="w-5 h-5"
+            className="w-5 h-5"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -31,34 +179,25 @@ function NavBar() {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M1 1h15M1 7h15M1 13h15"
             />
           </svg>
-        </button>
-        <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-          <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
-                aria-current="page"
-              >
+        </NavButton>
+        <NavMenu id="navbar-dropdown">
+          <NavList>
+            <NavItem>
+              <NavLinkItem href="#" className="active">
                 Home
-              </a>
-            </li>
-            <li>
-              <button
-                id="dropdownNavbarLink"
-                data-dropdown-toggle="dropdownNavbar"
-                class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                Listing{" "}
+              </NavLinkItem>
+            </NavItem>
+            <NavItem>
+              <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+                Listing
                 <svg
-                  class="w-2.5 h-2.5 ms-2.5"
+                  className="w-2.5 h-2.5 ms-2.5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -66,67 +205,40 @@ function NavBar() {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="m1 1 4 4 4-4"
                   />
                 </svg>
-              </button>
-              <div
-                id="dropdownNavbar"
-                className={`absolute z-10 ${isOpen ? '' : 'hidden'} font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-2`}
-              >
-                <ul
-                  class="py-2 text-sm text-gray-700"
-                  aria-labelledby="dropdownLargeButton"
-                >
+              </DropdownButton>
+              <DropdownMenu isOpen={isOpen}>
+                <DropdownList>
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">
-                      Buy
-                    </a>
+                    <DropdownItem href="#">Buy</DropdownItem>
                   </li>
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">
-                      Rent
-                    </a>
+                    <DropdownItem href="#">Rent</DropdownItem>
                   </li>
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">
-                      Sell
-                    </a>
+                    <DropdownItem href="#">Sell</DropdownItem>
                   </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-              >
-                Services
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-              >
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+                </DropdownList>
+              </DropdownMenu>
+            </NavItem>
+            <NavItem>
+              <NavLinkItem href="#">Services</NavLinkItem>
+            </NavItem>
+            <NavItem>
+              <NavLinkItem href="#">Pricing</NavLinkItem>
+            </NavItem>
+            <NavItem>
+              <NavLinkItem href="#">Contact</NavLinkItem>
+            </NavItem>
+          </NavList>
+        </NavMenu>
+      </NavContainer>
+    </Nav>
   );
 }
 
