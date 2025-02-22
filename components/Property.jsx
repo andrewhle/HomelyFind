@@ -90,37 +90,37 @@ function Property({ image }) {
           width={400}
           height={260}
           alt="property"
-          className="rounded-tl-[10px] rounded-tr-[10px] h-[260px]"
+          style={{ borderTopLeftRadius: '10px', borderTopRightRadius: '10px', height: '260px' }}
         />
         <PropertyDetails>
           <DetailsContent>
             <DetailItem>
-              <FaLocationDot className="w-6 h-6" />
+              <FaLocationDot style={{ width: '24px', height: '24px' }} />
               <DetailTitle>2861 62nd Ave, Oakland, CA 94605</DetailTitle>
             </DetailItem>
-            <div className="flex flex-col gap-5">
-              <div className="flex justify-between gap-5">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
                 <DetailItem>
-                  <PiBedFill className="w-5 h-5 text-gray-700" />
+                  <PiBedFill style={{ width: '20px', height: '20px', color: '#4b5563' }} />
                   <DetailText>3 Bed Room</DetailText>
                 </DetailItem>
                 <DetailItem>
-                  <PiShowerFill className="w-5 h-5 text-gray-700" />
+                  <PiShowerFill style={{ width: '20px', height: '20px', color: '#4b5563' }} />
                   <DetailText>2.5 Bath</DetailText>
                 </DetailItem>
               </div>
-              <div className="flex justify-between gap-5">
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
                 <DetailItem>
-                  <FaArrowsUpDownLeftRight className="w-5 h-5 text-gray-700" />
+                  <FaArrowsUpDownLeftRight style={{ width: '20px', height: '20px', color: '#4b5563' }} />
                   <DetailText>1,0321 sqft</DetailText>
                 </DetailItem>
                 <DetailItem>
-                  <FaHouse className="w-5 h-5 text-gray-700" />
+                  <FaHouse style={{ width: '20px', height: '20px', color: '#4b5563' }} />
                   <DetailText>Single Home</DetailText>
                 </DetailItem>
               </div>
             </div>
-            <div className="flex items-center justify-between gap-5 pr-11">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px', paddingRight: '44px' }}>
               <Button>View Details</Button>
               <Price>$949,000</Price>
             </div>

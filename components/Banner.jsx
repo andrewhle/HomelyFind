@@ -156,7 +156,7 @@ function Banner() {
             <SearchButton type="submit">Search</SearchButton>
           </SearchContainer>
         </BannerText>
-        <div className="flex">
+        <div>
           <Image
             src="/modern-house.png"
             width={900}

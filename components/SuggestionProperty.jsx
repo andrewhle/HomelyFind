@@ -80,12 +80,12 @@ function SuggestionProperty() {
         <Title>Homes For You</Title>
         <Explore>
           <ExploreText>Explore All</ExploreText>
-          <FaArrowRight className="w-5 h-5" />
+          <FaArrowRight style={{ width: '20px', height: '20px' }} />
         </Explore>
       </Header>
       <SliderContainer>
         <ArrowButton>
-          <FaArrowAltCircleLeft className="w-10 h-10" onClick={slideLeft} />
+          <FaArrowAltCircleLeft style={{ width: '40px', height: '40px' }} onClick={slideLeft} />
         </ArrowButton>
         <Slider id="slider">
           <Property image="property-1.jpeg" />
@@ -97,7 +97,7 @@ function SuggestionProperty() {
           <Property image="property-5.jpeg" />
         </Slider>
         <ArrowButton>
-          <FaArrowAltCircleRight className="w-10 h-10" onClick={slideRight} />
+          <FaArrowAltCircleRight style={{ width: '40px', height: '40px' }} onClick={slideRight} />
         </ArrowButton>
       </SliderContainer>
     </Container>

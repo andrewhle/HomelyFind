@@ -57,7 +57,7 @@ const NavButton = styled.button`
 `;
 
 const NavMenu = styled.div`
-  display: none;
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   width: 100%;
   @media (min-width: 768px) {
     display: block;
@@ -186,7 +186,7 @@ function NavBar() {
             />
           </svg>
         </NavButton>
-        <NavMenu id="navbar-dropdown">
+        <NavMenu isOpen={isOpen} id="navbar-dropdown">
           <NavList>
             <NavItem>
               <NavLinkItem href="#" className="active">
