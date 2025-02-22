@@ -1,3 +1,4 @@
+"use client";
 import Image from 'next/image';
 import { FaLocationDot } from "react-icons/fa6";
 import { PiBedFill } from "react-icons/pi";
